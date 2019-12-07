@@ -1,0 +1,6 @@
+tmpR7_2 = FOREACH TempR7 GENERATE transid, nombre as nombreproducto, valorventa, valorimpuestos, valortotal;
+DUMP tmpR7_2;
+
+tmpR7_3 = GROUP TempR7 BY location;
+R7 = FOREACH tmpR7_3 GENERATE group, SUM(TempR7.valortotal), SUM(TempR7.valorimpuestos);
+DUMP R7;
